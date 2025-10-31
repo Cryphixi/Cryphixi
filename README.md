@@ -68,7 +68,7 @@ I'm a junior CS student obsessed with creating projects to make sure you have fu
 
 ---
 
-## 📍 How to Reach Me
+## How to Reach Me
 
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/allena-oglivie/) 
 [![GitHub](https://img.shields.io/badge/github-%23181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Cryphixi) 
@@ -76,7 +76,7 @@ I'm a junior CS student obsessed with creating projects to make sure you have fu
 
 ---
 
-## ⚡ Fun Fact
+##  Fun Fact
 
 I started coding because of video games. Now I'm building the AI that might power the games of tomorrow. *Full circle.*
 
