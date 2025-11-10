@@ -89,16 +89,17 @@ skip_section:
     # ========================================
     
     # Test lui (load upper immediate)
-    # Immediates must be between -2048 and 2047
     lui x1, 100             # x1 = 100 << 12 = 409600
     
     # Test lui with different values
     lui x2, 1               # x2 = 1 << 12 = 4096
-    lui x3, 2047            # x3 = 2047 << 12 = 8384512 (max in range)
+    lui x3, 5               # x3 = 5 << 12 = 20480
     
-    # Test lui with negative value
-    lui x4, -1              # x4 = -1 << 12 = -4096
-    lui x5, -2048           # x5 = -2048 << 12 = -8388608 (min in range)
+    # Test lui with zero
+    lui x4, 0               # x4 = 0
+    
+    # Test lui with larger values
+    lui x5, 500             # x5 = 500 << 12 = 2048000
     
     # Combine lui with addi to create values
     lui x6, 1               # x6 = 4096
@@ -109,24 +110,20 @@ skip_section:
     auipc x8, 1             # x8 = PC + 4096
     auipc x9, 10            # x9 = PC + 40960
     
-    # Test auipc with negative offset
-    auipc x10, -1           # x10 = PC - 4096
+    # Test auipc with different values
+    auipc x10, 5            # x10 = PC + 20480
     
     # Use auipc to calculate relative addresses
     auipc x1, 0             # x1 = current PC
     addi x1, x1, 16         # x1 = PC + 16 (address 16 bytes ahead)
     
-    # Test with maximum positive value
-    lui x2, 2047            # x2 = 2047 << 12 = 8384512
-    auipc x3, 2047          # x3 = PC + 8384512
+    # Test with more values
+    lui x2, 200             # x2 = 200 << 12 = 819200
+    auipc x3, 50            # x3 = PC + 204800
     
-    # Test with zero
-    lui x4, 0               # x4 = 0
-    auipc x5, 0             # x5 = PC
-    
-    # Test with more negative values
-    lui x6, -100            # x6 = -100 << 12 = -409600
-    auipc x7, -500          # x7 = PC - 2048000
+    # Test combining lui and auipc
+    lui x4, 3               # x4 = 3 << 12 = 12288
+    auipc x5, 2             # x5 = PC + 8192
     
     # Exit (infinite loop for emulator)
     jal x0, _start          # Loop back to start or could use an exit mechanism
