@@ -89,36 +89,44 @@ skip_section:
     # ========================================
     
     # Test lui (load upper immediate)
-    lui x1, 305             # x1 = 305 << 12 = 1249280
+    # Immediates must be between -2048 and 2047
+    lui x1, 100             # x1 = 100 << 12 = 409600
     
     # Test lui with different values
     lui x2, 1               # x2 = 1 << 12 = 4096
-    lui x3, 1048575         # x3 = 1048575 << 12 = 4294963200 (max 20-bit value)
+    lui x3, 2047            # x3 = 2047 << 12 = 8384512 (max in range)
     
-    # Combine lui with addi to create full 32-bit values
-    lui x4, 1               # x4 = 4096
-    addi x4, x4, 2048       # x4 = 4096 + 2048 = 6144
+    # Test lui with negative value
+    lui x4, -1              # x4 = -1 << 12 = -4096
+    lui x5, -2048           # x5 = -2048 << 12 = -8388608 (min in range)
+    
+    # Combine lui with addi to create values
+    lui x6, 1               # x6 = 4096
+    addi x6, x6, 500        # x6 = 4096 + 500 = 4596
     
     # Test auipc (add upper immediate to PC)
-    auipc x5, 0             # x5 = PC (current program counter)
-    auipc x6, 1             # x6 = PC + 4096
-    auipc x7, 10            # x7 = PC + 40960
+    auipc x7, 0             # x7 = PC (current program counter)
+    auipc x8, 1             # x8 = PC + 4096
+    auipc x9, 10            # x9 = PC + 40960
+    
+    # Test auipc with negative offset
+    auipc x10, -1           # x10 = PC - 4096
     
     # Use auipc to calculate relative addresses
-    auipc x8, 0             # x8 = current PC
-    addi x9, x8, 16         # x9 = PC + 16 (address 16 bytes ahead)
+    auipc x1, 0             # x1 = current PC
+    addi x1, x1, 16         # x1 = PC + 16 (address 16 bytes ahead)
     
-    # Test combining lui and auipc
-    lui x10, 256            # x10 = 256 << 12 = 1048576
-    auipc x1, 256          # x1 = PC + 1048576
+    # Test with maximum positive value
+    lui x2, 2047            # x2 = 2047 << 12 = 8384512
+    auipc x3, 2047          # x3 = PC + 8384512
     
     # Test with zero
-    lui x2, 0               # x2 = 0
-    auipc x3, 0             # x3 = PC
+    lui x4, 0               # x4 = 0
+    auipc x5, 0             # x5 = PC
     
-    # Final test: use lui to set up a large constant
-    lui x4, 4660            # x4 = 4660 << 12 = 19087360
-    addi x4, x4, 1311       # x4 = 19087360 + 1311 = 19088671
+    # Test with more negative values
+    lui x6, -100            # x6 = -100 << 12 = -409600
+    auipc x7, -500          # x7 = PC - 2048000
     
     # Exit (infinite loop for emulator)
     jal x0, _start          # Loop back to start or could use an exit mechanism
