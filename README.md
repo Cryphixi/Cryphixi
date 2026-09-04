@@ -17,7 +17,7 @@
 
 **Computer Science @ UC Berkeley** | **Game ML/AI Enthusiast** | **Full-Stack Developer**
 
-I'm a junior CS student obsessed with creating projects to make sure you have fun! I build systems where code meets creativity—from game AI that adapts in real-time to procedurally generated worlds that respect the artist's vision.
+I'm a senior CS student obsessed with creating projects to make sure you have fun! I build systems where code meets creativity—from game AI that adapts in real-time to procedurally generated worlds that respect the artist's vision.
 
 ---
 
